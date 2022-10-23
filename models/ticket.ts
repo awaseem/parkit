@@ -1,4 +1,5 @@
 import stripe from '../lib/stripe'
+import redis from '../lib/redis'
 import { getRateById } from './rate'
 
 const SITE_DOMAIN = 'http://localhost:3000';
@@ -34,4 +35,12 @@ export async function createBuyTicketSession(rateId: string, licensePlate: strin
   })
 
   return session.url
+}
+
+export async function setTicketSession(licensePlate: string) {
+  await redis.set(licensePlate, 'true', { ex: 24 * 60 * 60})
+}
+
+export async function doesTicketSessionExist(licensePlate: string) {
+  return await redis.get(licensePlate)
 }

@@ -3,6 +3,7 @@ import stripe from '../../lib/stripe'
 import { buffer } from 'micro'
 import Cors from 'micro-cors'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { setTicketSession } from '../../models/ticket'
 
 const webhookSecret: string = process.env.STRIPE_WEBHOOK_SECRET!
 
@@ -41,6 +42,11 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Cast event data to Stripe object.
     if (event.type === 'payment_intent.succeeded') {
       const paymentIntent = event.data.object as Stripe.PaymentIntent
+      
+      console.log(paymentIntent.metadata.licensePlate)
+
+      await setTicketSession(paymentIntent.metadata.licensePlate)
+      
       console.log(`💰 PaymentIntent status: ${paymentIntent.status}`)
 
       // DO SOMETHING HERE
