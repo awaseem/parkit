@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getRate } from '../../models/rate'
+import { createBuyTicketSession } from '../../models/ticket'
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -11,6 +12,7 @@ export default function handler(
   }
 
   const incomingData = req.body
-  
-  console.log(incomingData)
+
+  const sessionUrl = await createBuyTicketSession(incomingData.rateId, incomingData.licensePlate)
+  res.status(200).send({ url: sessionUrl })
 }

@@ -12,7 +12,14 @@ export async function createBuyTicketSession(rateId: string, licensePlate: strin
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        price: rate.value.toString(),
+        price_data: {
+          currency: 'CAD',
+          unit_amount: rate.value * 100,
+          product_data: {
+            name: 'parking ticket',
+            description: 'parking ticket for the day'
+          }
+        },
         quantity: 1
       }
     ],
