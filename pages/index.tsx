@@ -1,4 +1,4 @@
-import { Center, Heading, Input, Text, VStack } from "@chakra-ui/react";
+import { Button, Center, Heading, Input, Text, VStack } from "@chakra-ui/react";
 
 function Home() {
   return (
@@ -14,11 +14,14 @@ function Home() {
       <Input
         color={"white"}
         focusBorderColor="pink.400"
-        placeholder="large size"
+        placeholder="License plate"
         size="lg"
         w={"sm"}
         colorScheme={"whiteAlpha"}
       />
+      <Button colorScheme={"pink"} size={"lg"} w={"sm"}>
+        Submit
+      </Button>
     </VStack>
   );
 }
