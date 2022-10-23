@@ -19,7 +19,9 @@ function Home(props: HomeProps) {
       h="calc(100vh)"
     >
       <Heading color={"white"}>Welcome to Parkit! 🚗</Heading>
-      <Text color={"white"}>Please enter your license plate to continue.</Text>
+      <Text color={"white"}>
+        Please enter your license plate to purchase a ticket.
+      </Text>
       <Text color={"pink.400"}>Current rate: ${currentRate}</Text>
       <Input
         color={"white"}
