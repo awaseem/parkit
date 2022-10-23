@@ -1,4 +1,4 @@
-import { Button, Center, Heading, Input, Text, VStack } from "@chakra-ui/react";
+import { Button, Heading, Input, Text, VStack } from "@chakra-ui/react";
 
 function Home() {
   return (
@@ -10,7 +10,8 @@ function Home() {
       h="calc(100vh)"
     >
       <Heading color={"white"}>🚗 Welcome to Parkit!</Heading>
-      <Text color={"white"}>Please enter your license plate to continue</Text>
+      <Text color={"white"}>Please enter your license plate to continue.</Text>
+      <Text color={"pink.400"}>Current rate: $</Text>
       <Input
         color={"white"}
         focusBorderColor="pink.400"
